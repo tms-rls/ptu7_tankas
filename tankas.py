@@ -1,6 +1,3 @@
-# import pickle
-
-
 class Tankas:
     def __init__(self, x_koordinate=0, y_koordinate=0, kryptis="Šiaurė", suviai=0):
         self.x_koordinate = x_koordinate
@@ -31,23 +28,11 @@ class Tankas:
     def desinen(self):
         self.kryptis = "Rytai"
         self.x_koordinate += 1
-        return self.x_koordinate,  self.kryptis
+        return self.x_koordinate, self.kryptis
 
     def sauti(self):
         self.suviai += 1
         return self.suviai
-
-    # def nuskaityti_statistika(self):
-    #     try:
-    #         with open("tankas.pkl", "rb") as file:
-    #             statistika = pickle.load(file)
-    #     except:
-    #         statistika = []
-    #     return statistika
-    #
-    # def irasyti_statistika(self):
-    #     with open("tankas.pkl", "wb") as file:
-    #         pickle.dump(self.info(), file)
 
 
 tankas = Tankas()
