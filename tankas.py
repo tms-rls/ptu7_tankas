@@ -33,16 +33,13 @@ class Tankas:
     def sauti(self):
         if self.kryptis == "Šiaurė":
             self.siaures_suviai += 1
-            self.visi_suviai += 1
         elif self.kryptis == "Pietūs":
             self.pietu_suviai += 1
-            self.visi_suviai += 1
         elif self.kryptis == "Vakarai":
             self.vakaru_suviai += 1
-            self.visi_suviai += 1
         else:
             self.rytu_suviai += 1
-            self.visi_suviai += 1
+        self.visi_suviai = self.siaures_suviai + self.pietu_suviai + self.vakaru_suviai + self.rytu_suviai
         return self.siaures_suviai, self.pietu_suviai, self.vakaru_suviai, self.rytu_suviai, self.visi_suviai
 
     def info(self):
