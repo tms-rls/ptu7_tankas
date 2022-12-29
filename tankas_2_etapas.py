@@ -1,5 +1,6 @@
 import random
 
+
 class Tankas:
     def __init__(self, x_koordinate=0, y_koordinate=0, kryptis="Šiaurė",
                  siaures_suviai=0, pietu_suviai=0, vakaru_suviai=0, rytu_suviai=0):
@@ -43,13 +44,6 @@ class Tankas:
             self.rytu_suviai += 1
         self.visi_suviai = self.siaures_suviai + self.pietu_suviai + self.vakaru_suviai + self.rytu_suviai
         return self.siaures_suviai, self.pietu_suviai, self.vakaru_suviai, self.rytu_suviai, self.visi_suviai
-
-    # def info(self):
-    #     print(f"Tanko kryptis: {self.kryptis}, "
-    #           f"tanko pozicija: (x = {self.x_koordinate}, y = {self.y_koordinate}), "
-    #           f"iššauta šūvių: {self.visi_suviai}. "
-    #           f"Iš jų: {self.siaures_suviai} į šiaurę, {self.pietu_suviai} į pietus, "
-    #           f"{self.vakaru_suviai} į vakarus, {self.rytu_suviai} į rytus")
 
 
 class Taikinys:
