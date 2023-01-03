@@ -20,7 +20,7 @@ class Tankas:
         self.kryptis = "Šiaurė"
         self.y_koordinate += 1
         if self.taskai == 0:
-            print(f"Baigėsi taškai - žaidimo pabaiga")
+            print(f"Baigėsi taškai - žaidimo pabaiga. Numušėte {self.numusti_taikiniai} taikinius")
             quit()
         return self.y_koordinate, self.kryptis, self.taskai
 
@@ -29,7 +29,7 @@ class Tankas:
         self.y_koordinate -= 1
         self.taskai -= 1
         if self.taskai == 0:
-            print(f"Baigėsi taškai - žaidimo pabaiga")
+            print(f"Baigėsi taškai - žaidimo pabaiga. Numušėte {self.numusti_taikiniai} taikinius")
             quit()
         return self.y_koordinate, self.kryptis, self.taskai
 
@@ -38,7 +38,7 @@ class Tankas:
         self.x_koordinate -= 1
         self.taskai -= 1
         if self.taskai == 0:
-            print(f"Baigėsi taškai - žaidimo pabaiga")
+            print(f"Baigėsi taškai - žaidimo pabaiga. Numušėte {self.numusti_taikiniai} taikinius")
             quit()
         return self.x_koordinate, self.kryptis, self.taskai
 
@@ -47,7 +47,7 @@ class Tankas:
         self.x_koordinate += 1
         self.taskai -= 1
         if self.taskai == 0:
-            print(f"Baigėsi taškai - žaidimo pabaiga")
+            print(f"Baigėsi taškai - žaidimo pabaiga. Numušėte {self.numusti_taikiniai} taikinius")
             quit()
         return self.x_koordinate, self.kryptis, self.taskai
 
@@ -76,69 +76,54 @@ class Taikinys:
     def naujas(self):
         self.x_koordinate = random.randint(-5, 5)
         self.y_koordinate = random.randint(-5, 5)
-        return f"Naujo taikinio pozicija: {self.x_koordinate, self.y_koordinate}"
+        print(f"Naujo taikinio pozicija: {self.x_koordinate, self.y_koordinate}")
 
 
-class Musis:
-    def pataikymas(self):
-        if tankas.x_koordinate == taikinys.x_koordinate and tankas.y_koordinate == taikinys.y_koordinate:
-            tankas.numusti_taikiniai += 1
-            print(f"Sprogote kartu su taikiniu. Žaidimo pabaiga. Numušti taikiniai: {tankas.numusti_taikiniai}")
-            quit()
-        else:
-            if tankas.x_koordinate == taikinys.x_koordinate:
-                if tankas.y_koordinate > taikinys.y_koordinate and tankas.kryptis == "Pietūs":
-                    tankas.numusti_taikiniai += 1
-                    tankas.taskai += 5
-                    print("Pataikei!")
-                    print(taikinys.naujas())
-                    print(f"Gavote 5 taškus, dabar turite: {tankas.taskai}")
-                    return tankas.numusti_taikiniai, tankas.taskai
-                elif tankas.y_koordinate < taikinys.y_koordinate and tankas.kryptis == "Šiaurė":
-                    tankas.numusti_taikiniai += 1
-                    tankas.taskai += 5
-                    print("Pataikei!")
-                    print(taikinys.naujas())
-                    print(f"Gavote 5 taškus, dabar turite: {tankas.taskai}")
-                    return tankas.numusti_taikiniai, tankas.taskai
-                else:
-                    print("Nepataikei!")
-                    return tankas.numusti_taikiniai, tankas.taskai
-            elif tankas.y_koordinate == taikinys.y_koordinate:
-                if tankas.x_koordinate > taikinys.x_koordinate and tankas.kryptis == "Vakarai":
-                    tankas.numusti_taikiniai += 1
-                    tankas.taskai += 5
-                    print("Pataikei!")
-                    print(taikinys.naujas())
-                    print(f"Gavote 5 taškus, dabar turite: {tankas.taskai}")
-                    return tankas.numusti_taikiniai, tankas.taskai
-                elif tankas.x_koordinate < taikinys.x_koordinate and tankas.kryptis == "Rytai":
-                    tankas.numusti_taikiniai += 1
-                    tankas.taskai += 5
-                    print("Pataikei!")
-                    print(taikinys.naujas())
-                    print(f"Gavote 5 taškus, dabar turite: {tankas.taskai}")
-                    return tankas.numusti_taikiniai, tankas.taskai
-                else:
-                    print("Nepataikei!")
-                    return tankas.numusti_taikiniai, tankas.taskai
+def pataikymas():
+    tankas.numusti_taikiniai += 1
+    tankas.taskai += 5
+    print("Pataikei!")
+    taikinys.naujas()
+    print(f"Gavote 5 taškus, dabar turite: {tankas.taskai}")
+    return tankas.numusti_taikiniai, tankas.taskai
+
+
+def musis():
+    if tankas.x_koordinate == taikinys.x_koordinate and tankas.y_koordinate == taikinys.y_koordinate:
+        tankas.numusti_taikiniai += 1
+        print(f"Sprogote kartu su taikiniu. Žaidimo pabaiga. Numušti taikiniai: {tankas.numusti_taikiniai}")
+        quit()
+    else:
+        if tankas.x_koordinate == taikinys.x_koordinate:
+            if tankas.y_koordinate > taikinys.y_koordinate and tankas.kryptis == "Pietūs":
+                pataikymas()
+            elif tankas.y_koordinate < taikinys.y_koordinate and tankas.kryptis == "Šiaurė":
+                pataikymas()
             else:
                 print("Nepataikei!")
-                return tankas.numusti_taikiniai, tankas.taskai
+        elif tankas.y_koordinate == taikinys.y_koordinate:
+            if tankas.x_koordinate > taikinys.x_koordinate and tankas.kryptis == "Vakarai":
+                pataikymas()
+            elif tankas.x_koordinate < taikinys.x_koordinate and tankas.kryptis == "Rytai":
+                pataikymas()
+            else:
+                print("Nepataikei!")
+        else:
+            print("Nepataikei!")
 
-    def info(self):
-        print(f"Taškai: {tankas.taskai}, Tanko kryptis: {tankas.kryptis}, "
-              f"tanko pozicija: (x = {tankas.x_koordinate}, y = {tankas.y_koordinate}), "
-              f"iššauta šūvių: {tankas.visi_suviai}. "
-              f"Iš jų: {tankas.siaures_suviai} į šiaurę, {tankas.pietu_suviai} į pietus, "
-              f"{tankas.vakaru_suviai} į vakarus, {tankas.rytu_suviai} į rytus, "
-              f"numušta {tankas.numusti_taikiniai} taikinių\n"
-              f"Taikinio pozicija:(x = {taikinys.x_koordinate}, y = {taikinys.y_koordinate})")
+
+def info():
+    print(f"Taškai: {tankas.taskai}, Tanko kryptis: {tankas.kryptis}, "
+          f"tanko pozicija: (x = {tankas.x_koordinate}, y = {tankas.y_koordinate}), "
+          f"iššauta šūvių: {tankas.visi_suviai}. "
+          f"Iš jų: {tankas.siaures_suviai} į šiaurę, {tankas.pietu_suviai} į pietus, "
+          f"{tankas.vakaru_suviai} į vakarus, {tankas.rytu_suviai} į rytus, "
+          f"numušta {tankas.numusti_taikiniai} taikinių\n"
+          f"Taikinio pozicija:(x = {taikinys.x_koordinate}, y = {taikinys.y_koordinate})")
 
 
 tankas = Tankas()
 taikinys = Taikinys()
-musis = Musis()
 
 while True:
     veiksmas = input("""Pasirinkite veiksmą:
@@ -160,9 +145,9 @@ q - Išeiti iš žaidimo
         tankas.desinen()
     elif veiksmas == str("e"):
         tankas.sauti()
-        musis.pataikymas()
+        musis()
     elif veiksmas == str("i"):
-        musis.info()
+        info()
     elif veiksmas == str("q"):
         print("Žaidimas baigtas")
         break
