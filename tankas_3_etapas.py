@@ -2,16 +2,15 @@ import random
 
 
 class Tankas:
-    def __init__(self, taskai=10, x_koordinate=0, y_koordinate=0, kryptis="Šiaurė",
-                 siaures_suviai=0, pietu_suviai=0, vakaru_suviai=0, rytu_suviai=0):
-        self.taskai = taskai
-        self.x_koordinate = x_koordinate
-        self.y_koordinate = y_koordinate
-        self.kryptis = kryptis
-        self.siaures_suviai = siaures_suviai
-        self.pietu_suviai = pietu_suviai
-        self.vakaru_suviai = vakaru_suviai
-        self.rytu_suviai = rytu_suviai
+    def __init__(self):
+        self.taskai = 10
+        self.x_koordinate = random.randint(-5, 5)
+        self.y_koordinate = random.randint(-5, 5)
+        self.kryptis = random.choice(["Šiaurė", "Pietūs", "Vakarai", "Rytai"])
+        self.siaures_suviai = 0
+        self.pietu_suviai = 0
+        self.vakaru_suviai = 0
+        self.rytu_suviai = 0
         self.visi_suviai = 0
         self.numusti_taikiniai = 0
 
@@ -69,9 +68,9 @@ class Tankas:
 
 
 class Taikinys:
-    def __init__(self, x_koordinate=random.randint(-5, 5), y_koordinate=random.randint(-5, 5)):
-        self.x_koordinate = x_koordinate
-        self.y_koordinate = y_koordinate
+    def __init__(self):
+        self.x_koordinate = random.randint(-5, 5)
+        self.y_koordinate = random.randint(-5, 5)
 
     def naujas(self):
         self.x_koordinate = random.randint(-5, 5)
