@@ -78,14 +78,16 @@ class Taikinys:
         self.y_koordinate = random.randint(-5, 5)
         print(f"Naujo taikinio pozicija: {self.x_koordinate, self.y_koordinate}")
 
+
 class Irasas:
-    def __init__(self, vardas, taskai, taikiniai):
+    def __init__(self, vardas, taikiniai, taskai):
         self.vardas = vardas
-        self.taskai = taskai
         self.taikiniai = taikiniai
+        self.taskai = taskai
 
     def __repr__(self):
-        return f"{self.vardas}, {self.taskai}, {self.taikiniai}"
+        return f"Žaidėjas: {self.vardas} Numušti taikiniai: {self.taikiniai} Surinkti taškai: {self.taskai}"
+
 
 class Rezultatai:
     def __init__(self):
@@ -99,8 +101,8 @@ class Rezultatai:
             informacija = []
         return informacija
 
-    def prideti_rezultata(self, vardas, taskai, taikiniai):
-        zaidejo_rezultatas = Irasas(vardas, taskai, taikiniai)
+    def prideti_rezultata(self, vardas, taikiniai, taskai):
+        zaidejo_rezultatas = Irasas(vardas, taikiniai, taskai)
         self.rezultatai.append(zaidejo_rezultatas)
         with open('rezultatai.pkl', 'wb') as failas:
             pickle.dump(self.rezultatai, failas)
@@ -109,13 +111,14 @@ class Rezultatai:
         if self.rezultatai == []:
             print('Nėra išsaugotų žaidėjų rezultatų')
         else:
-            for x in self.rezultatai:
-                print(x)
+            surusiuota = sorted(self.rezultatai, key=lambda a: (a.taikiniai, a.taskai), reverse=True)
+            for rezult in surusiuota:
+                print(rezult)
 
 
 def rezultatu_issaugojimas():
-    ar_issaugoti = input("Ar norite išsaugoti savo rezultatą? y / n: ")
-    if ar_issaugoti == "y":
+    ar_issaugoti = input("Ar norite išsaugoti savo rezultatą? t / n: ")
+    if ar_issaugoti == "t":
         zaidejo_vardas = input("Įveskite savo vardą: ")
         rezultatas.prideti_rezultata(zaidejo_vardas, tankas.taskai, tankas.numusti_taikiniai)
         quit()
