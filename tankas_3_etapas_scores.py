@@ -86,7 +86,7 @@ class Irasas:
         self.taskai = taskai
 
     def __repr__(self):
-        return f"Žaidėjas: {self.vardas} Numušti taikiniai: {self.taikiniai} Surinkti taškai: {self.taskai}"
+        return f"Žaidėjas: {self.vardas} | Numušti taikiniai: {self.taikiniai} | Surinkti taškai: {self.taskai}"
 
 
 class Rezultatai:
@@ -120,7 +120,7 @@ def rezultatu_issaugojimas():
     ar_issaugoti = input("Ar norite išsaugoti savo rezultatą? t / n: ")
     if ar_issaugoti == "t":
         zaidejo_vardas = input("Įveskite savo vardą: ")
-        rezultatas.prideti_rezultata(zaidejo_vardas, tankas.taskai, tankas.numusti_taikiniai)
+        rezultatas.prideti_rezultata(zaidejo_vardas, tankas.numusti_taikiniai, tankas.taskai)
         quit()
     elif ar_issaugoti == "n":
         quit()
