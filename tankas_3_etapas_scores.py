@@ -16,9 +16,9 @@ class Tankas:
         self.numusti_taikiniai = 0
 
     def pirmyn(self):
-        self.taskai -= 1
         self.kryptis = "Šiaurė"
         self.y_koordinate += 1
+        self.taskai -= 1
         if self.taskai == 0:
             print(f"Baigėsi taškai - žaidimo pabaiga. Numušėte {self.numusti_taikiniai} taikinius")
             rezultatu_issaugojimas()
